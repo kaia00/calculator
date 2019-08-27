@@ -2,7 +2,7 @@ package com.sda.exercise.Calculator;
 
 import com.sda.exercise.Calculator.operations.Operation;
 
-public class UserInput {
+public class UserInput  {
 
     private double num1;
     private double num2;
@@ -13,6 +13,7 @@ public class UserInput {
     }
 
     public void setOperator(Operation operator) {
+
         this.operator = operator;
     }
 
@@ -30,6 +31,7 @@ public class UserInput {
 
     public void setNum2(double num2) {
         this.num2 = num2;
+
     }
 
 

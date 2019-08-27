@@ -4,7 +4,7 @@ import com.sda.exercise.Calculator.operations.*;
 
 public class CalculatorFactory {
 
-    public static Calculator getFactory(UserInput userInput) {
+    public static Calculator getFactory(UserInput userInput)  {
 
         switch (userInput.getOperator()) {
             case ADD:
