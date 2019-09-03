@@ -2,8 +2,10 @@ package com.sda.exercise.Calculator.controller;
 
 import com.sda.exercise.Calculator.CalculatorFactory;
 import com.sda.exercise.Calculator.UserInput;
-import com.sda.exercise.Calculator.exceptions.CannotDivideByZeroException;
+import com.sda.exercise.Calculator.exceptions.DivideByZeroException;
 import com.sda.exercise.Calculator.operations.Operation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,30 +16,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class CalculatorController {
 
     @PostMapping("/add")
-    public double add(@RequestBody UserInput userInput){
+    public ResponseEntity add(@RequestBody UserInput userInput) {
         userInput.setOperator(Operation.ADD);
-        return CalculatorFactory.getFactory(userInput).calculate(userInput);
+        double result = CalculatorFactory.getFactory(userInput).calculate(userInput);
+        return new ResponseEntity(result, HttpStatus.OK);
+
     }
 
     @PostMapping("/div")
-    public double divide(@RequestBody UserInput userInput) throws CannotDivideByZeroException {
+    public ResponseEntity divide(@RequestBody UserInput userInput) throws DivideByZeroException {
         userInput.setOperator(Operation.DIVIDE);
-        if(userInput.getNum2() == 0){
-            throw new CannotDivideByZeroException("You cannot divide by zero");
+        if (userInput.getNum2() == 0) {
+            throw new DivideByZeroException("You cannot divide by zero");
         }
-        return CalculatorFactory.getFactory(userInput).calculate(userInput);
+        double result = CalculatorFactory.getFactory(userInput).calculate(userInput);
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
     @PostMapping("/mul")
-    public double multiply(@RequestBody UserInput userInput){
+    public ResponseEntity multiply(@RequestBody UserInput userInput) {
         userInput.setOperator(Operation.MULTIPLY);
-        return CalculatorFactory.getFactory(userInput).calculate(userInput);
+        double result = CalculatorFactory.getFactory(userInput).calculate(userInput);
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
     @PostMapping("/sub")
-    public double subtract(@RequestBody UserInput userInput){
+    public ResponseEntity subtract(@RequestBody UserInput userInput) {
         userInput.setOperator(Operation.SUBTRACT);
-        return CalculatorFactory.getFactory(userInput).calculate(userInput);
+        double result = CalculatorFactory.getFactory(userInput).calculate(userInput);
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
 }

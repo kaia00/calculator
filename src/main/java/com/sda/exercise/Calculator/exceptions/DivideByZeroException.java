@@ -1,8 +1,8 @@
 package com.sda.exercise.Calculator.exceptions;
 
-public class CannotDivideByZeroException extends Exception {
+public class DivideByZeroException extends Exception {
 
-    public CannotDivideByZeroException(String message) {
+    public DivideByZeroException(String message) {
         super(message);
     }
 }
